@@ -1,17 +1,16 @@
-buildscript {
-    repositories {
-        maven { url "http://repo.spring.io/libs-release" }
-        mavenLocal()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.1.RELEASE")
-    }
-}
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'maven'
+
+uploadArchives {
+	repositories.mavenDeployer {
+		repository(url: "file:///home/hariram/Personal/github/maven-repo-snapshot")
+		pom.version = '1.0'
+		pom.artifactId = 'cache'
+		pom.groupId = 'com.hariram'
+	}
+}
 
 jar {
     baseName = 'cache'
@@ -21,7 +20,15 @@ jar {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url "http://10.30.60.243:8080/archiva/repository/internal/" }
+    maven {
+    	url "https://raw.githubusercontent.com/hariram1981/maven-repo-release/master/"
+    }
+    maven {
+    	url "https://raw.githubusercontent.com/hariram1981/maven-repo-snapshot/master/"
+    }
+    maven {
+        url "file///home/hariram/Personal/github/maven-repo-snapshot"
+    }
 }
 
 dependencies {
@@ -31,4 +38,9 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.12'
+}
+
+task generateJavadoc(type: Javadoc) {
+	source = sourceSets.main.allJava
+	destinationDir = reporting.file("cache")
 }
