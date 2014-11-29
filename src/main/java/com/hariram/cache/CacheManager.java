@@ -25,7 +25,7 @@ public final class CacheManager {
 	 * @param methodName
 	 */
 	public static void addToCache(Object key, Object value, CacheRefresh cacheRefresh) {
-		LOGGER.debug("CacheManager.addToCache(): add key (" + key + "), value (" + value + "), cacheRefresh ("+ cacheRefresh + ")");
+		LOGGER.info("CacheManager.addToCache(): add key (" + key + "), value (" + value + "), cacheRefresh ("+ cacheRefresh + ")");
 		Cache.getInstance().setCacheRefresh(cacheRefresh);
 		Cache.getInstance().put(key, value);
 	}
@@ -39,7 +39,7 @@ public final class CacheManager {
 	 */
 	public static Object getFromCache(Object key) {
 		Object value = Cache.getInstance().getValue(key);
-		LOGGER.debug("CacheManager.getFromCache(): get key (" + key + "), value (" + value + ")");
+		LOGGER.info("CacheManager.getFromCache(): get key (" + key + "), value (" + value + ")");
 		return value;
 	}
 	
@@ -50,7 +50,7 @@ public final class CacheManager {
 	 */
 	public static long getRefreshDuration() {
 		long refreshDuration = Cache.getInstance().getRefreshDuration();
-		LOGGER.debug("CacheManager.getRefreshDuration(): refreshDuration (" + refreshDuration + ")");
+		LOGGER.info("CacheManager.getRefreshDuration(): refreshDuration (" + refreshDuration + ")");
 		return refreshDuration;
 	}
 
@@ -60,7 +60,7 @@ public final class CacheManager {
 	 * @param refreshDuration
 	 */
 	public static void setRefreshDuration(long refreshDuration) {
-		LOGGER.debug("CacheManager.setRefreshDuration(): refreshDuration (" + refreshDuration + ")");
+		LOGGER.info("CacheManager.setRefreshDuration(): refreshDuration (" + refreshDuration + ")");
 		Cache.getInstance().setRefreshDuration(refreshDuration);
 	}
 }

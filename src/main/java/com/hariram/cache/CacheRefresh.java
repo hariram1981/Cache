@@ -17,7 +17,6 @@ public class CacheRefresh {
 	 * Refreshes the cache
 	 */
 	public void refresh() {
-		LOGGER.debug("CacheRefresh.refresh(): refreshes the cache");
-		System.out.println("in super method of refresh");
+		LOGGER.info("CacheRefresh.refresh(): refreshes the cache");
 	}
 }
