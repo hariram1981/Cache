@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
  * Manages cache by adding and retrieving objects from cache
  * 
  * @author hariram
- * @date 29-10-2014
+ * date 29-Oct-2014
  */
 public final class CacheManager {
 	
@@ -19,10 +19,11 @@ public final class CacheManager {
 	}
 	
 	/**
-	 * Adds particular DAO (its method) to the cache.
+	 * Adds the value to the key in cache.
 	 * 
-	 * @param className
-	 * @param methodName
+	 * @param key - key to be used to store in the cache
+	 * @param value - value that is stored in the cache for the particular key
+	 * @param cacheRefresh sub-class of CacheRefresh that overrides refresh() for refreshing mechanism
 	 */
 	public static void addToCache(Object key, Object value, CacheRefresh cacheRefresh) {
 		LOGGER.info("CacheManager.addToCache(): add key (" + key + "), value (" + value + "), cacheRefresh ("+ cacheRefresh + ")");
@@ -31,11 +32,10 @@ public final class CacheManager {
 	}
 	
 	/**
-	 * Get array of cacheobject from cache.
+	 * Get object for the particular key from cache.
 	 * 
-	 * @param className
-	 * @param methodName
-	 * @return
+	 * @param key - key whose value is to be fetched from cache
+	 * @return Object value of the key in cache
 	 */
 	public static Object getFromCache(Object key) {
 		Object value = Cache.getInstance().getValue(key);
@@ -46,7 +46,7 @@ public final class CacheManager {
 	/**
 	 * Return refresh duration in seconds.
 	 * 
-	 * @return
+	 * @return long refresh duration of cache
 	 */
 	public static long getRefreshDuration() {
 		long refreshDuration = Cache.getInstance().getRefreshDuration();
@@ -57,7 +57,7 @@ public final class CacheManager {
 	/**
 	 * Sets the refresh duration in seconds.
 	 * 
-	 * @param refreshDuration
+	 * @param refreshDuration - refresh duration in seconds
 	 */
 	public static void setRefreshDuration(long refreshDuration) {
 		LOGGER.info("CacheManager.setRefreshDuration(): refreshDuration (" + refreshDuration + ")");
